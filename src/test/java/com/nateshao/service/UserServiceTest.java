@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.powermock.api.mockito.PowerMockito;
 
 import javax.management.OperationsException;
 import java.lang.management.OperatingSystemMXBean;
@@ -25,6 +26,18 @@ public class UserServiceTest {
     @Mock
     private UserDao userDao;
 
+    @Test
+    public void testQueryUserCount_powermock(){
+        UserDao uDao = PowerMockito.mock(UserDao.class);
+//        PowerMockito.doReturn(10).when(uDao).getCount();
+
+        PowerMockito.when(uDao.getCount()).thenReturn(10);
+        UserService service = new UserService(uDao);
+        int i = service.queryUserCount();
+        assertEquals(10,i);
+    }
+
+    @Ignore
     @Test
     public void testQueryUserCount_mockito() {
         MockitoAnnotations.initMocks(this);
