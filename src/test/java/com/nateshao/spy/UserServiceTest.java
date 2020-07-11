@@ -14,7 +14,12 @@ public class UserServiceTest {
 //        UserServiceSpy userServiceSpy = PowerMockito.mock(UserServiceSpy.class);
 //        userServiceSpy.fool();
 
-        UserServiceSpy spy = PowerMockito.spy(new UserServiceSpy());
-        spy.fool();
+//        UserServiceSpy spy = PowerMockito.spy(new UserServiceSpy());
+//        spy.fool();  //spy:会真实去执行
+
+
+        UserServiceSpy userServiceSpy = PowerMockito.spy(new UserServiceSpy());
+        PowerMockito.doNothing().when(userServiceSpy).fool();
+        userServiceSpy.fool();
     }
 }
