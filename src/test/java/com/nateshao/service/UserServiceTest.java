@@ -26,7 +26,7 @@ public class UserServiceTest {
     @Mock
     private UserDao userDao;
 
-    @Test
+    @Test       //do...when...then
     public void testQueryUserCount_powermock(){
 //        UserDao uDao = PowerMockito.mock(UserDao.class);
 ////        PowerMockito.doReturn(10).when(uDao).getCount();
@@ -37,10 +37,11 @@ public class UserServiceTest {
 //        assertEquals(10,i);
 
         UserDao dao = PowerMockito.mock(UserDao.class);
-        PowerMockito.when(dao.getCount()).thenReturn(100);
+//        PowerMockito.when(dao.getCount()).thenReturn(100);
+        PowerMockito.doReturn(1000).when(dao).getCount();
         UserService service = new UserService(dao);
         int count = service.queryUserCount();
-        assertEquals(100,count);
+        assertEquals(1000,count);
     }
 
     @Ignore
