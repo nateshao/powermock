@@ -2,6 +2,7 @@ package com.nateshao.service;
 
 import com.nateshao.common.User;
 import com.nateshao.dao.UserDao;
+import org.apache.tomcat.websocket.pojo.PojoEndpointServer;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -92,5 +93,24 @@ public class UserServiceTest {
         } catch (Exception e) {
             assertTrue(e instanceof UnsupportedOperationException);
         }
+    }
+
+    @Test
+    public void testSaveUserWithPowerMock(){
+        // 通过PowerMockito去mock--》UserDao.class
+//        UserDao userDao1 = PowerMockito.mock(UserDao.class);
+//        User user = new User();
+//        // PowerMockito什么都没做，when,userDao去插入user
+//        PowerMockito.doNothing().when(userDao1).insertUser(user);
+//        UserService userService = new UserService(userDao1);
+//        userService.saveInsert(user);
+
+        UserDao userDao2 = PowerMockito.mock(UserDao.class);
+        User user = new User();
+        PowerMockito.doNothing().when(userDao2).insertUser(user);
+        UserService userService2 = new UserService(userDao2);
+        userService2.saveInsert(user);
+
+        Mockito.verify(userDao2).insertUser(user);
     }
 }
