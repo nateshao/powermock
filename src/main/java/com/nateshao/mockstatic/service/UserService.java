@@ -8,17 +8,11 @@ import com.nateshao.mockstatic.dao.UserDao;
  * Created by @Author  on 2020/7/10 7:45
  */
 public class UserService {
-
-   
-
-
     public int queryUserCount() {
-        UserDao userDao = new UserDao();
-        return userDao.getCount();
+        return UserDao.getCount();
     }
 
     public void saveInsert(User user) {
-        UserDao userDao = new UserDao();
-        userDao.insertUser(user);
+        UserDao.insertUser(user);
     }
 }
