@@ -9,6 +9,10 @@ import com.nateshao.mockfinal.dao.UserDao;
  */
 public class UserService {
 
+    public UserService(UserDao userDao) {
+
+    }
+
     public int queryUserCount() {
         UserDao userDao = new UserDao();
         return userDao.getCount();
