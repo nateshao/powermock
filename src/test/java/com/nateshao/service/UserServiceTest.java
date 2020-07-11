@@ -28,21 +28,27 @@ public class UserServiceTest {
 
     @Test
     public void testQueryUserCount_powermock(){
-        UserDao uDao = PowerMockito.mock(UserDao.class);
-//        PowerMockito.doReturn(10).when(uDao).getCount();
+//        UserDao uDao = PowerMockito.mock(UserDao.class);
+////        PowerMockito.doReturn(10).when(uDao).getCount();
+//
+//        PowerMockito.when(uDao.getCount()).thenReturn(10);
+//        UserService service = new UserService(uDao);
+//        int i = service.queryUserCount();
+//        assertEquals(10,i);
 
-        PowerMockito.when(uDao.getCount()).thenReturn(10);
-        UserService service = new UserService(uDao);
-        int i = service.queryUserCount();
-        assertEquals(10,i);
+        UserDao dao = PowerMockito.mock(UserDao.class);
+        PowerMockito.when(dao.getCount()).thenReturn(100);
+        UserService service = new UserService(dao);
+        int count = service.queryUserCount();
+        assertEquals(100,count);
     }
 
     @Ignore
     @Test
     public void testQueryUserCount_mockito() {
         MockitoAnnotations.initMocks(this);
-        UserService service = new UserService(userDao);
         Mockito.when(userDao.getCount()).thenReturn(100);
+        UserService service = new UserService(userDao);
         int rs = service.queryUserCount();
         assertEquals(100, rs);
 
@@ -76,7 +82,7 @@ public class UserServiceTest {
 
     }
 
-    @Ignore
+
     @Test
     public void saveInsert_junit() {
         try {
