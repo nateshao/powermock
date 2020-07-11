@@ -1,8 +1,7 @@
 package com.nateshao.spy;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.powermock.api.mockito.PowerMockito;
 
 /**
  * @Author TongJie Shao
@@ -11,6 +10,11 @@ import static org.junit.Assert.*;
 public class UserServiceTest {
 
     @Test
-    public void fool() {
+    public void testfFool() throws Exception{
+//        UserServiceSpy userServiceSpy = PowerMockito.mock(UserServiceSpy.class);
+//        userServiceSpy.fool();
+
+        UserServiceSpy spy = PowerMockito.spy(new UserServiceSpy());
+        spy.fool();
     }
 }
