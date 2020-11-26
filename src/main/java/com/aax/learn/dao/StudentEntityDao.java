@@ -9,5 +9,18 @@ package com.aax.learn.dao;
  * @Gitee https://gitee.com/nateshao
  * Description：
  */
+@Mapper
 public interface StudentEntityDao {
+
+    int insert(@Param("pojo") StudentEntity pojo);
+
+    int insertList(@Param("pojos") List< StudentEntity> pojo);
+
+    List<StudentEntity> findList(@Param("pojo") StudentEntity pojo);
+
+    StudentEntity findOne(@Param("pojo") StudentEntity pojo);
+
+    int update(@Param("pojo") StudentEntity pojo);
+
+    int delete(@Param("id") long id);
 }
